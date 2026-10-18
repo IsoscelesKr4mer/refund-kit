@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>eBay Cancellation Kit</title>
+<style>
+  :root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html,body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --paper:#faf8f5;
+    --surface:#fffefc;
+    --ink:#16181d;
+    --ink-soft:#5f6168;
+    --ink-faint:#8b8d94;
+    --rule:#e2ddd4;
+    --rule-firm:#cdc6ba;
+    --accent:#9a5b1f;
+    --accent-wash:#f5e9da;
+    --flag:#a8321f;
+    --flag-wash:#f8e7e3;
+    --ok:#2f6b4a;
+    --ok-wash:#e4efe8;
+    --shadow:0 1px 2px rgba(22,24,29,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15161a;
+      --surface:#1d1f24;
+      --ink:#eceae6;
+      --ink-soft:#a6a8b0;
+      --ink-faint:#7c7e87;
+      --rule:#2e3138;
+      --rule-firm:#3d414a;
+      --accent:#d79a4e;
+      --accent-wash:#2e2619;
+      --flag:#e2705c;
+      --flag-wash:#33201c;
+      --ok:#6fb48d;
+      --ok-wash:#1b2a22;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15161a;
+    --surface:#1d1f24;
+    --ink:#eceae6;
+    --ink-soft:#a6a8b0;
+    --ink-faint:#7c7e87;
+    --rule:#2e3138;
+    --rule-firm:#3d414a;
+    --accent:#d79a4e;
+    --accent-wash:#2e2619;
+    --flag:#e2705c;
+    --flag-wash:#33201c;
+    --ok:#6fb48d;
+    --ok-wash:#1b2a22;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:15px;
+    line-height:1.6;
+    margin:0;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+  /* ---- masthead ---- */
+  header.mast{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 10px
+  }
+  h1{
+    font-family:Spectral,Georgia,serif;font-weight:600;
+    font-size:clamp(28px,6.5vw,40px);line-height:1.1;margin:0 0 12px;
+    text-wrap:balance;letter-spacing:-.01em
+  }
+  .standfirst{font-size:16px;color:var(--ink-soft);margin:0;max-width:60ch}
+
+  /* ---- the number ---- */
+  .ledger{
+    margin-block:28px;border:1px solid var(--rule-firm);background:var(--surface);
+    box-shadow:var(--shadow)
+  }
+  .ledger-head{
+    padding:12px 18px;border-bottom:1px solid var(--rule);
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600
+  }
+  .ledger-rows{padding:6px 18px 14px}
+  .lrow{
+    display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    padding-block:9px;border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums
+  }
+  .lrow:last-child{border-bottom:none}
+  .lrow .lbl{color:var(--ink-soft);font-size:14px}
+  .lrow .val{font-family:"IBM Plex Mono",monospace;font-size:15px}
+  .lrow.total{border-top:2px solid var(--ink);margin-top:4px;padding-top:12px}
+  .lrow.total .lbl{color:var(--ink);font-weight:600;font-size:15px}
+  .lrow.total .val{font-size:22px;font-weight:500;color:var(--accent)}
+
+  /* ---- sections ---- */
+  section{margin-block:44px}
+  h2{
+    font-family:Spectral,Georgia,serif;font-weight:600;font-size:23px;
+    margin:0 0 6px;line-height:1.25;text-wrap:balance
+  }
+  h3{
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:600;color:var(--ink-faint);margin:28px 0 10px
+  }
+  p{margin:0 0 14px;max-width:66ch}
+  .lede{color:var(--ink-soft);margin-bottom:22px;max-width:62ch}
+  a{color:var(--accent)}
+
+  /* ---- numbered steps (real sequence) ---- */
+  .step{display:flex;gap:16px;margin-block:30px;align-items:flex-start}
+  .step-n{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--ink);display:grid;place-items:center;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;
+    margin-top:2px
+  }
+  .step-body{min-width:0;flex:1}
+  .step-body > :last-child{margin-bottom:0}
+  .step h2{font-size:20px;margin-bottom:8px}
+
+  /* ---- paste blocks ---- */
+  .paste{
+    border:1px solid var(--rule-firm);background:var(--surface);
+    margin-block:16px;box-shadow:var(--shadow)
+  }
+  .paste-bar{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:9px 14px;border-bottom:1px solid var(--rule);background:var(--paper)
+  }
+  .paste-tag{
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600
+  }
+  .copy{
+    font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;
+    border:1px solid var(--rule-firm);background:var(--surface);color:var(--ink);
+    padding:5px 11px;border-radius:3px;white-space:nowrap
+  }
+  .copy:hover{border-color:var(--accent);color:var(--accent)}
+  .copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .copy.done{color:var(--ok);border-color:var(--ok)}
+  .paste pre{
+    margin:0;padding:14px;overflow-x:auto;
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.65;
+    white-space:pre-wrap;word-break:break-word
+  }
+
+  /* ---- fill-in slot ---- */
+  .slot{
+    background:var(--accent-wash);color:var(--accent);
+    border-bottom:1.5px dotted var(--accent);
+    padding:0 3px;font-weight:500;border-radius:2px
+  }
+
+  /* ---- callouts ---- */
+  .note{
+    border-left:3px solid var(--rule-firm);padding:2px 0 2px 16px;
+    margin-block:18px;color:var(--ink-soft)
+  }
+  .note.warn{border-left-color:var(--flag)}
+  .note.warn strong{color:var(--flag)}
+  .note.good{border-left-color:var(--ok)}
+  .note.good strong{color:var(--ok)}
+  .note > :last-child{margin-bottom:0}
+  .note strong{color:var(--ink)}
+
+  /* ---- evidence ---- */
+  .quote{
+    border:1px solid var(--rule);background:var(--surface);
+    padding:14px 16px;margin-block:12px;box-shadow:var(--shadow)
+  }
+  .quote .meta{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+    color:var(--ink-faint);margin-bottom:7px;letter-spacing:.01em
+  }
+  .quote .said{
+    font-family:Spectral,Georgia,serif;font-size:16px;line-height:1.5;
+    font-style:italic;margin:0;color:var(--ink)
+  }
+
+  /* ---- checklist ---- */
+  .check{list-style:none;padding:0;margin:0}
+  .check li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding-block:11px;border-bottom:1px solid var(--rule)
+  }
+  .check li:last-child{border-bottom:none}
+  .check input{
+    margin:4px 0 0;width:17px;height:17px;flex:0 0 auto;
+    accent-color:var(--accent);cursor:pointer
+  }
+  .check label{cursor:pointer;flex:1;min-width:0}
+  .check input:checked + label{color:var(--ink-faint);text-decoration:line-through}
+
+  /* ---- need-from-you list ---- */
+  .need{
+    counter-reset:n;list-style:none;padding:0;margin:0;
+    border:1px solid var(--flag);background:var(--flag-wash)
+  }
+  .need li{
+    counter-increment:n;padding:13px 16px 13px 46px;position:relative;
+    border-bottom:1px solid var(--rule)
+  }
+  .need li:last-child{border-bottom:none}
+  .need li::before{
+    content:counter(n);position:absolute;left:16px;top:13px;
+    font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+    color:var(--flag)
+  }
+  .need strong{display:block;margin-bottom:2px}
+  .need .why{font-size:13.5px;color:var(--ink-soft)}
+
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  .tscroll{overflow-x:auto;margin-block:16px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{
+    font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;border-bottom:1.5px solid var(--rule-firm)
+  }
+
+  footer{
+    margin-top:56px;padding-top:22px;border-top:2px solid var(--ink);
+    font-size:13px;color:var(--ink-faint)
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Prepared for Kyle &middot; 18 October 2026</p>
+    <h1>The cancelled Disney&nbsp;Mint box</h1>
+    <p class="standfirst">A seller accepted your offer, sent a shipping confirmation, cancelled the next morning telling eBay your address was the problem, told you in messages it was local pickup, and the same listing now shows $1,749.99 against the $899.99 you paid. He has since put the price rise in writing himself. Everything below is already gathered. You are not building a case, you are filing one.</p>
+
+    <div class="note good">
+      <p><strong>The part that matters: he answered in writing.</strong> Almost nobody in this situation gets that. His reply is better evidence than anything you could have said, and it is why this is worth twenty minutes rather than a shrug.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Where the money is</h2>
+    <div class="ledger">
+      <div class="ledger-head">Order [ ORDER NUMBER ] &middot; cancelled 18 October 2026</div>
+      <div class="ledger-rows">
+        <div class="lrow"><span class="lbl">2026 Topps Disney Mint Hobby Box, NYCC exclusive</span><span class="val">$899.99</span></div>
+        <div class="lrow"><span class="lbl">Tax</span><span class="val">$93.60</span></div>
+        <div class="lrow"><span class="lbl">Refunded to Venmo, 18 October</span><span class="val">&minus;$993.59</span></div>
+        <div class="lrow total"><span class="lbl">Same listing, in your eBay thread today</span><span class="val">$1,749.99</span></div>
+      </div>
+    </div>
+    <p>You are not out of pocket. You are out the box, and the gap between what you agreed and what he now wants for it is <strong>$850</strong>.</p>
+  </section>
+
+  <section>
+    <h2>The contradiction, in his own words</h2>
+    <p>He has now given <strong>three</strong> accounts of the same cancellation. They cannot all be true, and he gave the last one after you had already set the first two side by side.</p>
+
+    <div class="said">
+      <div class="meta">What he told eBay &middot; cancellation notice, 18 Oct</div>
+      <div class="quote">"Something was wrong with the buyer's shipping address."</div>
+    </div>
+
+    <div class="said">
+      <div class="meta">What he told you &middot; before you challenged it</div>
+      <div class="quote">The listing was meant for local pickup, and eBay would not let him turn shipping off.</div>
+    </div>
+
+    <div class="said">
+      <div class="meta">kes935 &middot; 10:46 AM, after you set the two side by side</div>
+      <div class="quote">"i'm sorry - it's for local pick up."<br>"if i get another, i will let you know."</div>
+    </div>
+
+    <div class="said">
+      <div class="meta">kes935 &middot; 10:51 AM</div>
+      <div class="quote">"and if you want to get ebay involved, that's 100% your option and your choice - i get these in and out so if you want to proceed that route, please don't expect to have any future friendly transactions.  i take these situations very seriously.<br><br>there is a reason why i popped the price so that when ebay would allow me to edit the listing, i could.  but that didn't happen.<br><br>sorry this one didn't work out."</div>
+    </div>
+
+    <div class="note good">
+      <p><strong>Read the second paragraph of that again.</strong> "There is a reason why i popped the price." He is telling you, unprompted, that he raised it. Whatever the rest of the sentence is meant to mean, the admission is not ambiguous and it is in your message thread permanently.</p>
+    </div>
+
+    <div class="note good">
+      <p><strong>And "i get these in and out" ends the pickup story himself.</strong> A seller who moves these in and out is a shipper. He wrote it in the same message as the pickup excuse.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The line he should not have typed</h2>
+    <div class="said">
+      <div class="meta">kes935 &middot; 10:51 AM</div>
+      <div class="quote">"if you want to proceed that route, please don't expect to have any future friendly transactions.  i take these situations very seriously."</div>
+    </div>
+    <p>That is a seller telling a buyer there will be consequences for using eBay's dispute process. It is a separate problem from the cancellation and it is worth reporting on its own, in its own sentence, so it does not get buried inside the refund complaint.</p>
+    <div class="note warn">
+      <p><strong>Report it as its own item, not as colour.</strong> "The seller warned me not to expect future transactions if I involved eBay" is a clean, quotable sentence. Do not editorialise around it. The quote does all the work and anything added to it weakens it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>His own listing, which you should quote back</h2>
+    <div class="said">
+      <div class="meta">kes935 &middot; item description, added 18 July 2024</div>
+      <div class="quote">"Buyer cancellation requests will be IGNORED.  In order to operate on eBay as a buyer, you must be an adult.  As a grown adult, it is important that you take responsibility for your actions.  Abiding to a contract and seeing through that contract is a demonstration of acting responsibly.  Too many of you are children.  I do not deal with children, or adults that behave like children."</div>
+    </div>
+    <div class="said">
+      <div class="meta">Same description</div>
+      <div class="quote">"eBay is a simple platform.  You buy, I ship, we leave feedback."</div>
+    </div>
+    <p>Include it once, flat, with no comment attached. A reviewer who sees a seller's own words about honouring contracts next to a cancellation he filed against the buyer does not need it pointed out, and pointing it out is what turns a report into a grudge.</p>
+  </section>
+
+  <section>
+    <h2>Step one &mdash; screenshot the listing before anything else</h2>
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h2>Two minutes, and it is the piece nobody else can get</h2>
+        <p>Open the eBay message thread with kes935 and tap the item card at the top showing <strong>$1,749.99</strong>. Screenshot the listing page itself, with the <strong>item number and the price both visible</strong>.</p>
+        <div class="note warn">
+          <p><strong>Do this first.</strong> That listing does not come up in eBay's public search, so the only proof it exists at that price is what is in front of you right now. If he edits it again or takes it down, the card in your thread may change with it, and the single best fact in your report goes with it.</p>
+        </div>
+        <p>While you are there, screenshot the cancellation email, his three messages, and the listing description above. Five screenshots, all already on your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step two &mdash; report it</h2>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h2>eBay Help &rarr; report a seller &rarr; seller did not complete the sale</h2>
+        <p>Paste this. Every sentence is checkable and none of it characterises him.</p>
+
+        <div class="paste">
+          <div class="paste-bar"><span class="paste-tag">Report text</span><button class="copy" type="button">Copy</button></div>
+<pre>Order [ ORDER NUMBER ], cancelled by the seller on 18 October 2026.
+
+The reason the seller gave eBay was "Something was wrong with the buyer's shipping address." My address is valid, unchanged, and the seller never contacted me about it at any point. He had sent the standard purchase confirmation the previous evening saying the item was shipping.
+
+In eBay messages he gave me a different reason: that the listing was meant for local pickup and that eBay would not let him turn shipping off. He repeated this at 10:46 AM today, after I had set both reasons side by side. In the same thread at 10:51 AM he wrote "i get these in and out", which is not consistent with a pickup-only listing.
+
+In that same 10:51 AM message he also wrote: "there is a reason why i popped the price so that when ebay would allow me to edit the listing, i could." The listing now shows $1,749.99. I paid $899.99.
+
+Separately, in the same message, he wrote: "if you want to proceed that route, please don't expect to have any future friendly transactions. i take these situations very seriously." I am reporting that as well. A seller should not be warning a buyer about consequences for using eBay's dispute process.
+
+I am asking for two things: that the cancellation reason be reviewed, because it attributes a fault to me that did not exist, and that the message about future transactions be looked at on its own.
+
+I have screenshots of the cancellation notice, all of the seller's messages, and the current listing price.</pre>
+        </div>
+
+        <div class="note">
+          <p><strong>Attach the five screenshots</strong> if the form allows it. If it does not, say in the text that you have them and will provide them on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step three &mdash; what not to do</h2>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h2>Three things that would cost you the win</h2>
+        <div class="note warn">
+          <p><strong>Do not tell him you will drop the report if he sells you the box.</strong> Saying "I would still like the box, otherwise I will report this" was fine, and you already said it. Making the report conditional on the sale is not, because he refunded you and no longer owes you a sale. He would screenshot it and report you, and a store his size knows exactly how.</p>
+        </div>
+        <div class="note warn">
+          <p><strong>Do not canvass the Whatnot rooms.</strong> One factual post about your own experience is yours to make. Going room to room telling people not to buy from him is organised and repeated, which is the shape that gets called a campaign, and it is the one version of this that can be turned around on you.</p>
+        </div>
+        <div class="note warn">
+          <p><strong>Do not add the jab.</strong> Quoting his "as a grown adult" line back at him in a message feels excellent and converts a documented complaint into two men arguing. Save it for a post, where it works on an audience rather than on the one person who can still say yes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>If you post about it</h2>
+    <p>You can, and the card people will spread it. Screenshots and a flat caption, no adjectives. The post writes itself, because he wrote it:</p>
+    <div class="paste">
+      <div class="paste-bar"><span class="paste-tag">Caption</span><button class="copy" type="button">Copy</button></div>
+<pre>His listing: "Buyer cancellation requests will be IGNORED. As a grown adult, it is important that you take responsibility for your actions. Abiding to a contract and seeing through that contract is a demonstration of acting responsibly. Too many of you are children."
+
+Also him: accepted my offer at $899.99, sent a shipping confirmation, then cancelled the next morning and told eBay there was a problem with my address. There wasn't. He told me in messages it was meant for local pickup. The listing is now $1,749.99, and he wrote to me: "there is a reason why i popped the price".</pre>
+    </div>
+    <div class="note">
+      <p><strong>Facts with receipts only.</strong> "He cancelled over price and blamed my address" is a fact. "This guy is a scammer" is a claim about a business, and the only sentence in the whole thing he could do anything with. Let people draw it themselves. They will.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What this is actually worth</h2>
+    <p>Honestly: eBay will not make him ship it, and you are not getting that box at $899.99. He has told you he will not sell it to you and the price is now $1,749.99.</p>
+    <p>What a report can cost him is a transaction defect, which feeds seller level rather than the public feedback percentage. You cannot move the 100%, because cancelled orders cannot be rated, which you already found when the feedback button was not there. Enough defects and he loses Top Rated status, and Top Rated Plus is a 10% discount on final value fees. On a store doing that volume it is a meaningful monthly number, and a far bigger lever than a tenth of a percent of feedback.</p>
+    <div class="note good">
+      <p><strong>And you have four more coming, all under a grand.</strong> That is worth holding on to. You are not short of the box, you are short of this box at this price, which means you can file this cleanly, let it go, and lose nothing either way.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Before you file</h2>
+    <ul class="check">
+      <li><input type="checkbox" id="k1"><label for="k1">Screenshotted the live listing with the item number and $1,749.99 visible</label></li>
+      <li><input type="checkbox" id="k2"><label for="k2">Screenshotted the cancellation notice showing the address reason</label></li>
+      <li><input type="checkbox" id="k3"><label for="k3">Screenshotted all three of his messages, including the 10:51 one</label></li>
+      <li><input type="checkbox" id="k4"><label for="k4">Screenshotted his listing description about honouring contracts</label></li>
+      <li><input type="checkbox" id="k5"><label for="k5">Filled the order number into the report text</label></li>
+      <li><input type="checkbox" id="k6"><label for="k6">Read it back once, with nothing in it that characterises him</label></li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+  // copy buttons
+  document.querySelectorAll(".paste").forEach(function(box){
+    var btn = box.querySelector(".copy");
+    var pre = box.querySelector("pre");
+    if(!btn || !pre) return;
+    btn.addEventListener("click", function(){
+      var text = pre.innerText;
+      var done = function(){
+        btn.textContent = "Copied";
+        btn.classList.add("done");
+        setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("done"); }, 1800);
+      };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+        } else { fallback(text, done); }
+      }catch(e){ fallback(text, done); }
+    });
+  });
+
+  function fallback(text, done){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly","");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      done();
+    }catch(e){ /* clipboard unavailable; user can select manually */ }
+  }
+
+  // checklist progress, per-viewer convenience only
+  var boxes = document.querySelectorAll('.check input[type="checkbox"]');
+  boxes.forEach(function(cb){
+    try{
+      if(localStorage.getItem("pi-refund-" + cb.id) === "1") cb.checked = true;
+    }catch(e){}
+    cb.addEventListener("change", function(){
+      try{ localStorage.setItem("pi-refund-" + cb.id, cb.checked ? "1" : "0"); }catch(e){}
+    });
+  });
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
