@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<title>eBay Wrong Item Kit</title>
+<style>
+  :root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html,body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --paper:#faf8f5;
+    --surface:#fffefc;
+    --ink:#16181d;
+    --ink-soft:#5f6168;
+    --ink-faint:#8b8d94;
+    --rule:#e2ddd4;
+    --rule-firm:#cdc6ba;
+    --accent:#9a5b1f;
+    --accent-wash:#f5e9da;
+    --flag:#a8321f;
+    --flag-wash:#f8e7e3;
+    --ok:#2f6b4a;
+    --ok-wash:#e4efe8;
+    --shadow:0 1px 2px rgba(22,24,29,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15161a;
+      --surface:#1d1f24;
+      --ink:#eceae6;
+      --ink-soft:#a6a8b0;
+      --ink-faint:#7c7e87;
+      --rule:#2e3138;
+      --rule-firm:#3d414a;
+      --accent:#d79a4e;
+      --accent-wash:#2e2619;
+      --flag:#e2705c;
+      --flag-wash:#33201c;
+      --ok:#6fb48d;
+      --ok-wash:#1b2a22;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15161a;
+    --surface:#1d1f24;
+    --ink:#eceae6;
+    --ink-soft:#a6a8b0;
+    --ink-faint:#7c7e87;
+    --rule:#2e3138;
+    --rule-firm:#3d414a;
+    --accent:#d79a4e;
+    --accent-wash:#2e2619;
+    --flag:#e2705c;
+    --flag-wash:#33201c;
+    --ok:#6fb48d;
+    --ok-wash:#1b2a22;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:15px;
+    line-height:1.6;
+    margin:0;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+  /* ---- masthead ---- */
+  header.mast{padding-block:40px 28px;border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 10px
+  }
+  h1{
+    font-family:Spectral,Georgia,serif;font-weight:600;
+    font-size:clamp(28px,6.5vw,40px);line-height:1.1;margin:0 0 12px;
+    text-wrap:balance;letter-spacing:-.01em
+  }
+  .standfirst{font-size:16px;color:var(--ink-soft);margin:0;max-width:60ch}
+
+  /* ---- the number ---- */
+  .ledger{
+    margin-block:28px;border:1px solid var(--rule-firm);background:var(--surface);
+    box-shadow:var(--shadow)
+  }
+  .ledger-head{
+    padding:12px 18px;border-bottom:1px solid var(--rule);
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600
+  }
+  .ledger-rows{padding:6px 18px 14px}
+  .lrow{
+    display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    padding-block:9px;border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums
+  }
+  .lrow:last-child{border-bottom:none}
+  .lrow .lbl{color:var(--ink-soft);font-size:14px}
+  .lrow .val{font-family:"IBM Plex Mono",monospace;font-size:15px}
+  .lrow.total{border-top:2px solid var(--ink);margin-top:4px;padding-top:12px}
+  .lrow.total .lbl{color:var(--ink);font-weight:600;font-size:15px}
+  .lrow.total .val{font-size:22px;font-weight:500;color:var(--accent)}
+
+  /* ---- sections ---- */
+  section{margin-block:44px}
+  h2{
+    font-family:Spectral,Georgia,serif;font-weight:600;font-size:23px;
+    margin:0 0 6px;line-height:1.25;text-wrap:balance
+  }
+  h3{
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:600;color:var(--ink-faint);margin:28px 0 10px
+  }
+  p{margin:0 0 14px;max-width:66ch}
+  .lede{color:var(--ink-soft);margin-bottom:22px;max-width:62ch}
+  a{color:var(--accent)}
+
+  /* ---- numbered steps (real sequence) ---- */
+  .step{display:flex;gap:16px;margin-block:30px;align-items:flex-start}
+  .step-n{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--ink);display:grid;place-items:center;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;
+    margin-top:2px
+  }
+  .step-body{min-width:0;flex:1}
+  .step-body > :last-child{margin-bottom:0}
+  .step h2{font-size:20px;margin-bottom:8px}
+
+  /* ---- paste blocks ---- */
+  .paste{
+    border:1px solid var(--rule-firm);background:var(--surface);
+    margin-block:16px;box-shadow:var(--shadow)
+  }
+  .paste-bar{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:9px 14px;border-bottom:1px solid var(--rule);background:var(--paper)
+  }
+  .paste-tag{
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600
+  }
+  .copy{
+    font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;
+    border:1px solid var(--rule-firm);background:var(--surface);color:var(--ink);
+    padding:5px 11px;border-radius:3px;white-space:nowrap
+  }
+  .copy:hover{border-color:var(--accent);color:var(--accent)}
+  .copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .copy.done{color:var(--ok);border-color:var(--ok)}
+  .paste pre{
+    margin:0;padding:14px;overflow-x:auto;
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.65;
+    white-space:pre-wrap;word-break:break-word
+  }
+
+  /* ---- fill-in slot ---- */
+  .slot{
+    background:var(--accent-wash);color:var(--accent);
+    border-bottom:1.5px dotted var(--accent);
+    padding:0 3px;font-weight:500;border-radius:2px
+  }
+
+  /* ---- callouts ---- */
+  .note{
+    border-left:3px solid var(--rule-firm);padding:2px 0 2px 16px;
+    margin-block:18px;color:var(--ink-soft)
+  }
+  .note.warn{border-left-color:var(--flag)}
+  .note.warn strong{color:var(--flag)}
+  .note.good{border-left-color:var(--ok)}
+  .note.good strong{color:var(--ok)}
+  .note > :last-child{margin-bottom:0}
+  .note strong{color:var(--ink)}
+
+  /* ---- evidence ---- */
+  .quote{
+    border:1px solid var(--rule);background:var(--surface);
+    padding:14px 16px;margin-block:12px;box-shadow:var(--shadow)
+  }
+  .quote .meta{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+    color:var(--ink-faint);margin-bottom:7px;letter-spacing:.01em
+  }
+  .quote .said{
+    font-family:Spectral,Georgia,serif;font-size:16px;line-height:1.5;
+    font-style:italic;margin:0;color:var(--ink)
+  }
+
+  /* ---- checklist ---- */
+  .check{list-style:none;padding:0;margin:0}
+  .check li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding-block:11px;border-bottom:1px solid var(--rule)
+  }
+  .check li:last-child{border-bottom:none}
+  .check input{
+    margin:4px 0 0;width:17px;height:17px;flex:0 0 auto;
+    accent-color:var(--accent);cursor:pointer
+  }
+  .check label{cursor:pointer;flex:1;min-width:0}
+  .check input:checked + label{color:var(--ink-faint);text-decoration:line-through}
+
+  /* ---- need-from-you list ---- */
+  .need{
+    counter-reset:n;list-style:none;padding:0;margin:0;
+    border:1px solid var(--flag);background:var(--flag-wash)
+  }
+  .need li{
+    counter-increment:n;padding:13px 16px 13px 46px;position:relative;
+    border-bottom:1px solid var(--rule)
+  }
+  .need li:last-child{border-bottom:none}
+  .need li::before{
+    content:counter(n);position:absolute;left:16px;top:13px;
+    font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;
+    color:var(--flag)
+  }
+  .need strong{display:block;margin-bottom:2px}
+  .need .why{font-size:13.5px;color:var(--ink-soft)}
+
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  .tscroll{overflow-x:auto;margin-block:16px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{
+    font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:600;border-bottom:1.5px solid var(--rule-firm)
+  }
+
+  footer{
+    margin-top:56px;padding-top:22px;border-top:2px solid var(--ink);
+    font-size:13px;color:var(--ink-faint)
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Prepared for Kyle &middot; 20 October 2026</p>
+    <h1>The box that arrived as a Simpsons&nbsp;DVD</h1>
+    <p class="standfirst">You paid $806.09 for a sealed 2026 Topps Mint Disney NYCC box. What turned up in Kent on 19 October was a torn Priority Mail box with a Simpsons Blu-ray in it, carrying two separate Post Office stamps saying it arrived open. You do not need to prove who took it. You need to file the right request, with the right reason, before 18 November.</p>
+
+    <div class="note good">
+      <p><strong>The Post Office documented this for you before you noticed.</strong> They stamped the label RECEIVED UNSEALED in red and taped the box RECEIVED IN DAMAGED CONDITION. That is a carrier admission, in writing, on the parcel itself. Most people in your position have nothing but their own word.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Where the money is</h2>
+    <div class="ledger">
+      <div class="ledger-head">Order 22-15273-30464 &middot; seller harrism84 &middot; delivered 19 October, 9:54am</div>
+      <div class="ledger-rows">
+        <div class="lrow"><span class="lbl">2026 Topps Mint Disney, NYCC Box (Thursday), sealed</span><span class="val">$720.00</span></div>
+        <div class="lrow"><span class="lbl">Shipping</span><span class="val">$10.15</span></div>
+        <div class="lrow"><span class="lbl">Tax</span><span class="val">$75.94</span></div>
+        <div class="lrow total"><span class="lbl">Paid 14 October by Venmo, through eBay checkout</span><span class="val">$806.09</span></div>
+      </div>
+    </div>
+    <p>Because that Venmo payment went through eBay's own checkout rather than directly to the seller, the Money Back Guarantee applies to it in full. A Venmo payment sent outside eBay would have left you with nothing. This one does not.</p>
+  </section>
+
+  <section>
+    <h2>The thing that makes this look hopeless, and is not</h2>
+    <p>The listing says <strong>Returns not accepted</strong>, and because of that your order screen shows no return button. That is almost certainly why this feels stuck.</p>
+    <div class="note good">
+      <p><strong>"Returns not accepted" only blocks a change of mind.</strong> It has no effect on a wrong item. eBay's Money Back Guarantee covers an item that does not match the listing regardless of the seller's return policy, and a Blu-ray in place of a sealed card box is as clear a mismatch as that rule ever sees. If the button is missing, the route is Help &amp; Contact, not giving up.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step one &middot; open the request today</h2>
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h2>Pick "doesn't match the description". Nothing else.</h2>
+        <p>The reason you choose decides whether this is won or argued about, so this is the single most important click on the page.</p>
+        <div class="tscroll">
+          <table>
+            <tr><th>Reason</th><th>What it does</th></tr>
+            <tr><td><strong>Doesn't match description</strong> / received the wrong item</td><td><strong>Correct.</strong> Covers you even on a no-returns listing. Seller pays return shipping if eBay asks for the DVD back.</td></tr>
+            <tr><td>Arrived damaged</td><td>Wrong. It concedes the right item arrived and broke, which is not what happened and is a weaker claim.</td></tr>
+            <tr><td>Didn't arrive</td><td>Wrong. Tracking shows delivered, so this gets closed automatically and you have burned a request.</td></tr>
+          </table>
+        </div>
+        <p><strong>Where to find it.</strong> My eBay, then Purchases, then the order, then "Return this item". If that option is not there because returns are off, go to Help &amp; Contact, then Returns and refunds, then tell it you received the wrong item and start the request from there. If the app still will not offer it, open a chat with an agent and say the sentence in step two. An agent can open it manually.</p>
+        <div class="note warn">
+          <p><strong>Your deadline is 18 November.</strong> Thirty days from the 19 October delivery. That is plenty of time and it is also the reason not to spend three weeks negotiating with the seller first. Open the request, then talk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step two &middot; what to write in it</h2>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h2>Facts, in order, with nothing added</h2>
+        <p>Keep it to what is on the parcel and in the order. Every sentence here is something eBay can confirm without taking your word for it.</p>
+        <div class="paste">
+          <div class="paste-bar"><span class="paste-tag">Request text</span><button class="copy" type="button">Copy</button></div>
+<pre>I ordered a sealed 2026 Topps Mint Disney NYCC Box (Thursday), order 22-15273-30464, $806.09 total.
+
+The package was delivered on 19 October. It did not contain the item. Inside was a Simpsons Blu-ray.
+
+The box arrived open and USPS documented it. The shipping label is stamped "RECEIVED UNSEALED" in red, and the box is taped with USPS "RECEIVED IN DAMAGED CONDITION" tape. The box is torn along one seam. I have photographs of the label, the tape, the torn box and the Blu-ray, and I have kept all of the packaging.
+
+I am requesting a full refund of $806.09. I have not opened or used anything and I can return the Blu-ray and the packaging if you need it.</pre>
+        </div>
+        <div class="note">
+          <p><strong>Attach the photos you already took.</strong> The label with the red stamp, the outside of the box with the USPS tape, the torn seam, and the Blu-ray sitting in the box. Four images is enough. They are better evidence than any paragraph.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step three &middot; then message the seller</h2>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h2>Friendly, because he is probably not the problem</h2>
+        <p>harrism84 is at 100% over 135 feedback with 150 sales and a normal mixed collectibles inventory, and the return address fits somebody who was actually at the show. That is not the shape of a scammer. He may well be finding out from your message that one of his parcels was opened.</p>
+        <p>He also has a reason to help: Priority Mail Flat Rate only carries $100 of insurance by default, so on a $720 box he is exposed too and will want the USPS claim to go through. Cooperation is in his interest, and a civil message is what gets it.</p>
+        <div class="paste">
+          <div class="paste-bar"><span class="paste-tag">Message to seller</span><button class="copy" type="button">Copy</button></div>
+<pre>Hi, I wanted to let you know directly rather than just file and go quiet.
+
+The Mint Disney box arrived today and the package had been opened in transit. USPS stamped the label "RECEIVED UNSEALED" and taped the box with their "received in damaged condition" tape. Inside there was a Simpsons Blu-ray instead of the box.
+
+I am not accusing you of anything. I have opened a request with eBay because of the time limit, not because I think you did this.
+
+Two things that would help: a photo of the item as you packed it, if you took one, and whether you insured the parcel above the $100 Priority Mail covers. I have kept the box, the tape, the label and the Blu-ray, so you have everything you need for a USPS claim. Happy to send it all back or to the Post Office if that helps you.</pre>
+        </div>
+        <div class="note warn">
+          <p><strong>Do not let him talk you into closing the request.</strong> A seller who offers to refund you directly if you close the case is asking you to give up the only protection you have, whether or not he means well. Keep the case open until the money is actually back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Step four &middot; report the mail theft</h2>
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h2>Free, five minutes, and it is already half done</h2>
+        <p>File at <strong>uspis.gov/report</strong> with the tracking number <strong>9505506593916287317227</strong>. The Postal Inspection Service already has the unsealed stamp on their own record, so you are confirming something they logged rather than making a claim they have to assess.</p>
+        <p>This does not get your money back. eBay does that. It matters because a $720 parcel opened between Pearl River and Kent is worth somebody looking at, and because it strengthens the seller's insurance claim, which is what makes him easy to deal with.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Three arguments not to make</h2>
+    <p>Each of these feels like it helps and each one hands eBay a reason to read the rest of you more carefully.</p>
+
+    <div class="note warn">
+      <p><strong>Do not state that it was stolen in transit.</strong> You do not know that, and you do not need it. The claim that wins is "the item was not in the box". The moment you name a culprit you have made an assertion somebody can disprove, and you have invited eBay to treat this as a carrier problem rather than a refund.</p>
+    </div>
+
+    <div class="note warn">
+      <p><strong>Do not lead with the 7.20 oz on the label.</strong> It is tempting, because a weight feels like proof. It is not. A sealed Mint Disney tin and a Blu-ray case weigh about the same, so that number is consistent with either story and settles nothing. Put it in front of eBay as a gotcha and the one piece of maths in your report is the piece that is wrong.</p>
+    </div>
+
+    <div class="note warn">
+      <p><strong>Do not accuse the seller of swapping it.</strong> Separate from whether it is true, eBay does not require a culprit to refund you, and an accusation converts a clean not-as-described claim into a dispute with two sides. It also costs you the one person who can file the USPS claim and produce a packing photo.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What not to do with the parcel</h2>
+    <ul class="need">
+      <li><strong>Do not throw any of it away</strong><span class="why">The box, the USPS tape, the label with the red stamp, and the Blu-ray. eBay can require you to return the wrong item before refunding, and the seller pays that shipping. Binning it is the one way to lose a case you have already won.</span></li>
+      <li><strong>Do not take payment outside eBay</strong><span class="why">Venmo direct, Zelle, Cash App, none of it is covered. Your protection exists because the money moved through eBay's checkout. Keep it there.</span></li>
+      <li><strong>Do not leave feedback yet</strong><span class="why">It changes nothing about the refund and it removes your reason to stay civil. Decide after the money is back.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Before you file</h2>
+    <ul class="check">
+      <li><input type="checkbox" id="k2-photos"><label for="k2-photos">Four photos ready: red stamped label, box with USPS tape, torn seam, Blu-ray in the box</label></li>
+      <li><input type="checkbox" id="k2-reason"><label for="k2-reason">Reason selected is "doesn't match description", not damaged and not didn't-arrive</label></li>
+      <li><input type="checkbox" id="k2-text"><label for="k2-text">Request text pasted, with the order number and the $806.09 in it</label></li>
+      <li><input type="checkbox" id="k2-keep"><label for="k2-keep">Box, tape, label and Blu-ray all kept somewhere safe</label></li>
+      <li><input type="checkbox" id="k2-seller"><label for="k2-seller">Seller messaged after the request was open, not before</label></li>
+      <li><input type="checkbox" id="k2-usps"><label for="k2-usps">Reported at uspis.gov/report with the tracking number</label></li>
+    </ul>
+    <div class="note good">
+      <p><strong>What this should end as.</strong> A full $806.09 back, probably without an argument, because the Post Office wrote your evidence on the outside of the parcel and the seller has his own reason to want this resolved. The only way it goes wrong is running out the clock or throwing out the box.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prepared 20 October 2026 from the order details, the parcel photographs and the seller's profile. Figures are from order 22-15273-30464. Nothing on this page was filed on your behalf.</p>
+  </footer>
+
+</div>
+
+<script>
+  // copy buttons
+  document.querySelectorAll(".paste").forEach(function(box){
+    var btn = box.querySelector(".copy");
+    var pre = box.querySelector("pre");
+    if(!btn || !pre) return;
+    btn.addEventListener("click", function(){
+      var text = pre.innerText;
+      var done = function(){
+        btn.textContent = "Copied";
+        btn.classList.add("done");
+        setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("done"); }, 1800);
+      };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+        } else { fallback(text, done); }
+      }catch(e){ fallback(text, done); }
+    });
+  });
+
+  function fallback(text, done){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly","");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      done();
+    }catch(e){ /* clipboard unavailable; user can select manually */ }
+  }
+
+  // checklist progress, per-viewer convenience only
+  var boxes = document.querySelectorAll('.check input[type="checkbox"]');
+  boxes.forEach(function(cb){
+    try{
+      if(localStorage.getItem("pi-refund-" + cb.id) === "1") cb.checked = true;
+    }catch(e){}
+    cb.addEventListener("change", function(){
+      try{ localStorage.setItem("pi-refund-" + cb.id, cb.checked ? "1" : "0"); }catch(e){}
+    });
+  });
+</script>
+
+</body>
+</html>
